@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: backend-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${IAM_JWT_ISSUER_URI:}
+
+security:
+  jwt:
+    enabled: true
+    tenant-claim: tenant_id
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
