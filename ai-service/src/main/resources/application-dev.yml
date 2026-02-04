@@ -1,0 +1,10 @@
+# application-dev.yml
+app:
+  security:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
