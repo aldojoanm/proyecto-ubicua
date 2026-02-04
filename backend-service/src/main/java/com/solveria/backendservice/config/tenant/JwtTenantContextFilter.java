@@ -5,6 +5,10 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
@@ -22,6 +26,9 @@ public class JwtTenantContextFilter extends OncePerRequestFilter {
 
     private final String tenantClaim;
     private final List<RequestMatcher> excludedMatchers;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public JwtTenantContextFilter(String tenantClaim) {
         this.tenantClaim = tenantClaim;
@@ -46,6 +53,7 @@ public class JwtTenantContextFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
+        boolean tenantFilterEnabled = false;
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication instanceof JwtAuthenticationToken jwtAuth) {
@@ -55,11 +63,33 @@ public class JwtTenantContextFilter extends OncePerRequestFilter {
                     return;
                 }
                 SecurityTenantContext.setTenantId(tenantId);
+                tenantFilterEnabled = enableTenantFilter(tenantId);
             }
             filterChain.doFilter(request, response);
         } finally {
+            if (tenantFilterEnabled) {
+                disableTenantFilter();
+            }
             SecurityTenantContext.clear();
         }
+    }
+
+    private boolean enableTenantFilter(String tenantId) {
+        if (entityManager == null) {
+            return false;
+        }
+        Session session = entityManager.unwrap(Session.class);
+        Filter filter = session.enableFilter("tenantFilter");
+        filter.setParameter("tenantId", tenantId);
+        return true;
+    }
+
+    private void disableTenantFilter() {
+        if (entityManager == null) {
+            return;
+        }
+        Session session = entityManager.unwrap(Session.class);
+        session.disableFilter("tenantFilter");
     }
 
     private void writeMissingTenant(HttpServletResponse response) throws IOException {
