@@ -1,0 +1,31 @@
+# JWT Security Configuration (PROD: enabled)
+security:
+  jwt:
+    enabled: true
+
+# OAuth2 Resource Server JWT Configuration
+# Configure via environment variables (no hardcoded values):
+# IAM_JWT_ISSUER_URI=https://auth.example.com/realms/myrealm
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${IAM_JWT_ISSUER_URI:}
+
+# Actuator Configuration (PROD: limited exposure)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: never
+
+# Logging Configuration (PROD: production levels)
+logging:
+  level:
+    root: INFO
+    com.solveria: INFO
+    org.springframework.security: WARN

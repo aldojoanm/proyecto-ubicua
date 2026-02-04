@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "iam-service"
+		},
+		{
+			"path": "core-plataform"
+		},
+		{
+			"path": "ai-service"
+		}
+	]
+}
