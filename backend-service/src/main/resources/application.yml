@@ -1,0 +1,36 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: backend-service
+  datasource:
+    url: ${BACKEND_DB_URL:jdbc:postgresql://localhost:5432/backend}
+    username: ${BACKEND_DB_USER:backend}
+    password: ${BACKEND_DB_PASSWORD:backend}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  data:
+    mongodb:
+      uri: ${BACKEND_MONGODB_URI:mongodb://localhost:27017/backend}
+    redis:
+      host: ${BACKEND_REDIS_HOST:localhost}
+      port: ${BACKEND_REDIS_PORT:6379}
+      password: ${BACKEND_REDIS_PASSWORD:}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${IAM_JWT_ISSUER_URI:}
+
+security:
+  jwt:
+    enabled: true
+    tenant-claim: tenant_id
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
