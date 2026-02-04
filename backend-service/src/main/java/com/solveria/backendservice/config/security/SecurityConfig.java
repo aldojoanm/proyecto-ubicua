@@ -40,7 +40,8 @@ public class SecurityConfig {
     @ConditionalOnProperty(name = "security.jwt.enabled", havingValue = "true", matchIfMissing = true)
     public SecurityFilterChain jwtSecurityFilterChain(
             HttpSecurity http,
-            JwtTenantContextFilter tenantContextFilter
+            JwtTenantContextFilter tenantContextFilter,
+            JwtUserContextFilter userContextFilter
     ) throws Exception {
         log.info("event=SECURITY_CONFIG_JWT_ENABLED");
 
@@ -60,6 +61,7 @@ public class SecurityConfig {
                         .anyRequest().denyAll()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))
+                .addFilterAfter(userContextFilter, BearerTokenAuthenticationFilter.class)
                 .addFilterAfter(tenantContextFilter, BearerTokenAuthenticationFilter.class);
 
         return http.build();
@@ -81,5 +83,10 @@ public class SecurityConfig {
     @Bean
     public JwtTenantContextFilter jwtTenantContextFilter() {
         return new JwtTenantContextFilter(jwtProperties.tenantClaim());
+    }
+
+    @Bean
+    public JwtUserContextFilter jwtUserContextFilter() {
+        return new JwtUserContextFilter();
     }
 }

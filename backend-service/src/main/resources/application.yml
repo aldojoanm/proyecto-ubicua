@@ -29,6 +29,12 @@ security:
     enabled: true
     tenant-claim: tenant_id
 
+ai:
+  service:
+    base-url: ${AI_SERVICE_BASE_URL:http://localhost:8091}
+    rag-cache:
+      ttl-seconds: ${AI_RAG_CACHE_TTL_SECONDS:600}
+
 management:
   endpoints:
     web:
