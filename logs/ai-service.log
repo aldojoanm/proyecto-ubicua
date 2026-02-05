@@ -1,0 +1,127 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.solveria:ai-bootstrap >----------------------
+[INFO] Building AI Bootstrap 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.9:run (default-cli) > test-compile @ ai-bootstrap >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ai-bootstrap ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ai-bootstrap ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ai-bootstrap ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ai-bootstrap ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:3.5.9:run (default-cli) < test-compile @ ai-bootstrap <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.9:run (default-cli) @ ai-bootstrap ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.9)
+
+2026-02-05T10:52:02.598-04:00  INFO 16896 --- [ai-service] [           main] c.s.ai.bootstrap.AiServiceApplication    : Starting AiServiceApplication using Java 21.0.9 with PID 16896 (C:\Users\aldoj\Desktop\proyecto-ubicua\ai-service\modules\ai-bootstrap\target\classes started by aldoj in C:\Users\aldoj\Desktop\proyecto-ubicua\ai-service\modules\ai-bootstrap)
+2026-02-05T10:52:02.605-04:00  INFO 16896 --- [ai-service] [           main] c.s.ai.bootstrap.AiServiceApplication    : No active profile set, falling back to 1 default profile: "dev"
+2026-02-05T10:52:05.759-04:00  INFO 16896 --- [ai-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8091 (http)
+2026-02-05T10:52:05.785-04:00  INFO 16896 --- [ai-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-05T10:52:05.785-04:00  INFO 16896 --- [ai-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-05T10:52:05.909-04:00  INFO 16896 --- [ai-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-05T10:52:05.909-04:00  INFO 16896 --- [ai-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3153 ms
+2026-02-05T10:52:06.168-04:00  INFO 16896 --- [ai-service] [           main] c.s.a.i.llm.stub.DevLlmChatPortStub      : DevLlmChatPortStub initialized - using stub LLM responses in dev/test profile
+2026-02-05T10:52:06.785-04:00  INFO 16896 --- [ai-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-02-05T10:52:07.406-04:00  INFO 16896 --- [ai-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8091 (http) with context path '/'
+2026-02-05T10:52:07.427-04:00  INFO 16896 --- [ai-service] [           main] c.s.ai.bootstrap.AiServiceApplication    : Started AiServiceApplication in 6.541 seconds (process running for 7.821)
+2026-02-05T10:52:07.525-04:00  INFO 16896 --- [ai-service] [           main] c.s.a.b.config.DevWiringSanityConfig     : === LlmChatPort Wiring Sanity Check ===
+2026-02-05T10:52:07.526-04:00  INFO 16896 --- [ai-service] [           main] c.s.a.b.config.DevWiringSanityConfig     : Found 1 LlmChatPort bean(s):
+2026-02-05T10:52:07.527-04:00  INFO 16896 --- [ai-service] [           main] c.s.a.b.config.DevWiringSanityConfig     :   - Bean name: 'devLlmChatPortStub', Type: com.solveria.ai.infrastructure.llm.stub.DevLlmChatPortStub
+2026-02-05T10:52:07.527-04:00  INFO 16896 --- [ai-service] [           main] c.s.a.b.config.DevWiringSanityConfig     : LlmChatPort wiring OK - 1 bean(s) registered
+2026-02-05T10:52:07.527-04:00  INFO 16896 --- [ai-service] [           main] c.s.a.b.config.DevWiringSanityConfig     : =======================================
+2026-02-05T10:56:52.976-04:00  INFO 16896 --- [ai-service] [nio-8091-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-05T10:56:52.976-04:00  INFO 16896 --- [ai-service] [nio-8091-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-05T10:56:52.979-04:00  INFO 16896 --- [ai-service] [nio-8091-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-05T10:56:58.581-04:00  INFO 16896 --- [ai-service] [nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-05T10:56:58.851-04:00  INFO 16896 --- [ai-service] [nio-8091-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@22e836c4
+2026-02-05T10:56:58.857-04:00  INFO 16896 --- [ai-service] [nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-05T11:04:42.424-04:00  WARN 16896 --- [ai-service] [l-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@47aa3d26 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-05T11:05:14.821-04:00  WARN 16896 --- [ai-service] [l-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@66d046e4 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-05T11:05:15.302-04:00  WARN 16896 --- [ai-service] [l-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@22e836c4 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-05T11:05:30.959-04:00  WARN 16896 --- [ai-service] [l-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@47622d76 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-05T11:05:47.402-04:00  WARN 16896 --- [ai-service] [l-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@61aad2de (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-05T11:05:47.858-04:00  WARN 16896 --- [ai-service] [onnection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Pool is empty, failed to create/setup connection (9ddb3fb8-4a1b-46d9-ab6c-c16ddd2de71e)
+
+org.postgresql.util.PSQLException: Connection to 127.0.0.1:5434 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:279) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:752) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:731) ~[HikariCP-6.3.3.jar:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.8.jar:42.7.8]
+	... 14 common frames omitted
+
+2026-02-05T11:06:53.070-04:00  WARN 16896 --- [ai-service] [onnection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Pool is empty, failed to create/setup connection (a8e18004-bbb7-4aa6-9671-eb59e9b800dc)
+
+org.postgresql.util.PSQLException: Connection to 127.0.0.1:5434 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:279) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:752) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:731) ~[HikariCP-6.3.3.jar:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.8.jar:42.7.8]
+	... 14 common frames omitted
+
+^C

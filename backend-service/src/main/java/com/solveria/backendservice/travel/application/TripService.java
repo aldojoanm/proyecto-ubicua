@@ -39,7 +39,7 @@ public class TripService {
         if (tenantId == null || tenantId.isBlank()) {
             return List.of();
         }
-        return repository.findAll(TenantSpecifications.hasTenant(tenantId));
+        return repository.findAll(TenantSpecifications.<Trip>hasTenant(tenantId));
     }
 
     @Transactional(readOnly = true)
@@ -48,7 +48,7 @@ public class TripService {
         if (tenantId == null || tenantId.isBlank()) {
             return null;
         }
-        return repository.findOne(TenantSpecifications.hasTenant(tenantId)
+        return repository.findOne(TenantSpecifications.<Trip>hasTenant(tenantId)
                         .and((root, query, cb) -> cb.equal(root.get("id"), tripId)))
                 .orElse(null);
     }
