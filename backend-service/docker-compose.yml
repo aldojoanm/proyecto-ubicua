@@ -1,0 +1,43 @@
+name: backend-service
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: backend-service-postgres
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PG_HOST_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${BACKEND_PG_DB:-backend}
+      POSTGRES_USER: ${BACKEND_PG_USER:-backend}
+      POSTGRES_PASSWORD: ${BACKEND_PG_PASSWORD:-backend}
+    volumes:
+      - backend_service_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -h localhost -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+
+  mongodb:
+    image: mongo:7
+    container_name: backend-service-mongodb
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_MONGO_HOST_PORT:-27017}:27017"
+    volumes:
+      - backend_service_mongodb:/data/db
+
+  redis:
+    image: redis:7-alpine
+    container_name: backend-service-redis
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_REDIS_HOST_PORT:-6379}:6379"
+
+volumes:
+  backend_service_pgdata:
+    name: backend-service-pgdata
+  backend_service_mongodb:
+    name: backend-service-mongodb
