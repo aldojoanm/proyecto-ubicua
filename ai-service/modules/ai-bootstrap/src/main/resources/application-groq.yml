@@ -1,0 +1,6 @@
+# Profile "groq": Use Groq API for chat.
+# Run with profiles: dev,groq
+groq:
+  base-url: ${GROQ_BASE_URL:https://api.groq.com/openai}
+  api-key: ${GROQ_API_KEY:}
+  chat-model: ${GROQ_CHAT_MODEL:llama3-8b-8192}

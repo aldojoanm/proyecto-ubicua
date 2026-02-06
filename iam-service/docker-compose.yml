@@ -1,0 +1,25 @@
+name: iam-service
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: iam-service-postgres
+    restart: unless-stopped
+    ports:
+      - "${IAM_PG_HOST_PORT:-5433}:5432"
+    environment:
+      POSTGRES_DB: ${IAM_PG_DB:-iam_service}
+      POSTGRES_USER: ${IAM_PG_USER:-iam}
+      POSTGRES_PASSWORD: ${IAM_PG_PASSWORD:-iam}
+    volumes:
+      - iam_service_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -h localhost -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+
+volumes:
+  iam_service_pgdata:
+    name: iam-service-pgdata

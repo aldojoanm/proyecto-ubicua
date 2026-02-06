@@ -34,7 +34,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${IAM_ISSUER_URI:http://localhost:8080/realms/solveria}
+          issuer-uri: ${IAM_ISSUER_URI:http://localhost:8080}
+          jwk-set-uri: ${IAM_JWK_SET_URI:http://localhost:8080/api/v1/auth/jwks}
 
 springdoc:
   api-docs:

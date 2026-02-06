@@ -31,13 +31,11 @@ public class SecurityConfig {
                         "/actuator/info/**"
                 ).permitAll();
 
-                if (dev) {
-                    a.requestMatchers(
-                            "/v3/api-docs/**",
-                            "/swagger-ui/**",
-                            "/swagger-ui.html"
-                    ).permitAll();
-                }
+                a.requestMatchers(
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html"
+                ).permitAll();
 
                 a.anyRequest().authenticated();
             })

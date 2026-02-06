@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import com.solveria.ai.application.seed.RagSeedStore;
 
 /**
  * Stub VectorStorePort for dev and test profiles (when PgVector autoconfig is excluded).
@@ -17,6 +18,6 @@ public class StubVectorStoreAdapter implements VectorStorePort {
 
     @Override
     public List<RagChunkDto> similaritySearch(String query, int topK, String tenantId, String namespace) {
-        return List.of();
+        return RagSeedStore.get(namespace, topK);
     }
 }

@@ -2,10 +2,13 @@ package com.solveria.iamservice.config;
 
 import com.solveria.core.iam.application.port.PermissionRepositoryPort;
 import com.solveria.core.iam.application.port.RoleRepositoryPort;
+import com.solveria.core.iam.application.port.UserRepositoryPort;
 import com.solveria.core.iam.infrastructure.persistence.adapter.PermissionRepositoryAdapter;
 import com.solveria.core.iam.infrastructure.persistence.adapter.RoleRepositoryAdapter;
+import com.solveria.core.iam.infrastructure.persistence.adapter.UserRepositoryAdapter;
 import com.solveria.core.iam.infrastructure.persistence.repository.PermissionJpaRepository;
 import com.solveria.core.iam.infrastructure.persistence.repository.RoleJpaRepository;
+import com.solveria.core.iam.infrastructure.persistence.repository.UserJpaRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,5 +38,11 @@ public class IamCoreImportsConfig {
     @ConditionalOnMissingBean(PermissionRepositoryPort.class)
     public PermissionRepositoryPort permissionRepositoryPort(PermissionJpaRepository permissionJpaRepository) {
         return new PermissionRepositoryAdapter(permissionJpaRepository);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(UserRepositoryPort.class)
+    public UserRepositoryPort userRepositoryPort(UserJpaRepository userJpaRepository) {
+        return new UserRepositoryAdapter(userJpaRepository);
     }
 }

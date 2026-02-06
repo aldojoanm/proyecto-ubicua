@@ -4,9 +4,8 @@ import com.solveria.ai.application.dto.ChatResultDto;
 import com.solveria.ai.application.port.out.LlmChatPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 
 /**
  * Stub LlmChatPort implementation for dev and test profiles.
@@ -14,8 +13,7 @@ import org.springframework.stereotype.Component;
  * Marked as @Primary to ensure it takes precedence over other implementations in dev/test.
  */
 @Component
-@Primary
-@Profile({"dev", "test"})
+@ConditionalOnMissingBean(LlmChatPort.class)
 public class DevLlmChatPortStub implements LlmChatPort {
 
     private static final Logger log = LoggerFactory.getLogger(DevLlmChatPortStub.class);

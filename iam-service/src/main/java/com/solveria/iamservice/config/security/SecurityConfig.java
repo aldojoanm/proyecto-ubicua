@@ -82,6 +82,11 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/swagger-ui/**"),
                                 new AntPathRequestMatcher("/swagger-ui.html")
                         ).permitAll()
+
+                        // Public endpoints: Local JWT issuance & JWKS (DEV)
+                        .requestMatchers(
+                                new AntPathRequestMatcher("/api/v1/auth/**")
+                        ).permitAll()
                         
                         // Public endpoint: Error handling
                         .requestMatchers(new AntPathRequestMatcher("/error")).permitAll()

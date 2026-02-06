@@ -1,11 +1,25 @@
 spring:
   application:
     name: iam-service
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${IAM_JWT_ISSUER_URI:http://localhost:8080}
+          jwk-set-uri: ${IAM_JWT_JWK_SET_URI:http://localhost:8080/api/v1/auth/jwks}
 
 # JWT Security Configuration
 security:
   jwt:
     enabled: false  # Default: disabled for DEV mode
+    local:
+      enabled: false
+      issuer: ${IAM_LOCAL_JWT_ISSUER:http://localhost:8080}
+      key-id: ${IAM_LOCAL_JWT_KEY_ID:local-dev}
+      access-token-minutes: ${IAM_LOCAL_JWT_TTL_MINUTES:60}
 
 server:
   port: 8080

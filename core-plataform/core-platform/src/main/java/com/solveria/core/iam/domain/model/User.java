@@ -27,6 +27,44 @@ public class User extends BaseEntity {
     )
     private Set<Role> roles = new HashSet<>();
 
+    protected User() {
+        // Constructor requerido por JPA
+    }
+
+    public User(String username, String email, boolean active) {
+        this.username = username;
+        this.email = email;
+        this.active = active;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     public void assignRoles(Set<Role> roles) {
         this.roles.clear();
         this.roles.addAll(roles);

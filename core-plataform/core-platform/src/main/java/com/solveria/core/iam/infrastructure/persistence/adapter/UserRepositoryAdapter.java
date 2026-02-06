@@ -5,6 +5,7 @@ import com.solveria.core.iam.domain.model.User;
 import com.solveria.core.iam.infrastructure.persistence.repository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -19,6 +20,11 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     @Override
     public Optional<User> findById(Long id) {
         return userJpaRepository.findById(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userJpaRepository.findAll();
     }
 
     @Override

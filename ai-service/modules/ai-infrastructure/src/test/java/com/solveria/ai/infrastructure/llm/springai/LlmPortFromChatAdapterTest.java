@@ -4,6 +4,7 @@ import com.solveria.ai.application.dto.ChatResultDto;
 import com.solveria.ai.application.port.out.LlmChatPort;
 import com.solveria.ai.domain.model.Completion;
 import com.solveria.ai.domain.model.Prompt;
+import org.springframework.beans.factory.ObjectProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -21,7 +22,38 @@ class LlmPortFromChatAdapterTest {
     @Test
     void complete_delegatesToLlmChatAndMapsToCompletion() {
         when(llmChat.chat("hello")).thenReturn(new ChatResultDto("hi", 1, 2));
-        var adapter = new LlmPortFromChatAdapter(llmChat);
+        ObjectProvider<LlmChatPort> provider = new ObjectProvider<>() {
+            @Override
+            public LlmChatPort getObject(Object... args) {
+                return llmChat;
+            }
+
+            @Override
+            public LlmChatPort getObject() {
+                return llmChat;
+            }
+
+            @Override
+            public LlmChatPort getIfAvailable() {
+                return llmChat;
+            }
+
+            @Override
+            public LlmChatPort getIfUnique() {
+                return llmChat;
+            }
+
+            @Override
+            public java.util.stream.Stream<LlmChatPort> stream() {
+                return java.util.stream.Stream.of(llmChat);
+            }
+
+            @Override
+            public java.util.stream.Stream<LlmChatPort> orderedStream() {
+                return java.util.stream.Stream.of(llmChat);
+            }
+        };
+        var adapter = new LlmPortFromChatAdapter(provider);
         var prompt = Prompt.of("hello");
 
         Completion c = adapter.complete(prompt);

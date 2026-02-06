@@ -25,11 +25,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${IAM_JWT_ISSUER_URI:}
+          issuer-uri: ${IAM_JWT_ISSUER_URI:http://localhost:8080}
+          jwk-set-uri: ${IAM_JWT_JWK_SET_URI:http://localhost:8080/api/v1/auth/jwks}
 
 security:
   jwt:
-    enabled: false
+    enabled: true
     tenant-claim: tenant_id
 
 ai:

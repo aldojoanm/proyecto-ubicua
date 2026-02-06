@@ -5,22 +5,23 @@ import com.solveria.ai.application.port.out.LlmChatPort;
 import com.solveria.ai.application.port.out.LlmPort;
 import com.solveria.ai.domain.model.Completion;
 import com.solveria.ai.domain.model.Prompt;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;
 
 /**
  * LlmPort adapter that delegates to LlmChatPort (e.g. Spring AI ChatClient or stub).
  */
 @Component
-@ConditionalOnBean(LlmChatPort.class)
 public class LlmPortFromChatAdapter implements LlmPort {
 
     private static final String MODEL_NAME = "openai";
 
     private final LlmChatPort llmChat;
 
-    public LlmPortFromChatAdapter(LlmChatPort llmChat) {
-        this.llmChat = llmChat;
+    public LlmPortFromChatAdapter(ObjectProvider<LlmChatPort> llmChatProvider) {
+        this.llmChat = llmChatProvider.getIfAvailable(() -> prompt ->
+                new ChatResultDto("[DEV-STUB] LLM no configurado. Respuesta simulada.", 0, 0)
+        );
     }
 
     @Override

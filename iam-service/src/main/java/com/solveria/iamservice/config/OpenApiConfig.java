@@ -34,7 +34,9 @@ import org.springframework.context.annotation.Configuration;
         ),
         tags = {
                 @Tag(name = "Roles", description = "Role management operations"),
-                @Tag(name = "Permissions", description = "Permission management operations")
+                @Tag(name = "Permissions", description = "Permission management operations"),
+                @Tag(name = "Users", description = "User management"),
+                @Tag(name = "Auth", description = "Authentication and token issuance")
         }
 )
 @SecurityScheme(

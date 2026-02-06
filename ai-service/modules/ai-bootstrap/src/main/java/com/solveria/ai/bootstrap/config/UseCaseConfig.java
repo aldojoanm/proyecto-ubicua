@@ -9,6 +9,7 @@ import com.solveria.ai.application.port.out.TenantContextPort;
 import com.solveria.ai.application.port.out.VectorStorePort;
 import com.solveria.ai.application.service.CompletePromptService;
 import com.solveria.ai.application.service.RagQaService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,17 @@ public class UseCaseConfig {
     public CompletePromptUseCase completePromptUseCase(LlmPort llmPort) {
         return new CompletePromptService(llmPort);
     }
+
+    @Bean
+    @ConditionalOnMissingBean(LlmChatPort.class)
+    public LlmChatPort fallbackLlmChatPort() {
+        return prompt -> new com.solveria.ai.application.dto.ChatResultDto(
+                "[DEV-STUB] LLM no configurado. Respuesta simulada.",
+                0,
+                0
+        );
+    }
+
 
     @Bean
     public RagQaUseCase ragQaUseCase(

@@ -1,0 +1,4 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/solveria/ai-domain/1.0.0-SNAPSHOT/ai-domain-1.0.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>

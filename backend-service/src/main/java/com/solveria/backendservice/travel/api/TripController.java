@@ -8,6 +8,11 @@ import com.solveria.backendservice.travel.application.ItineraryService;
 import com.solveria.backendservice.travel.application.TripService;
 import com.solveria.backendservice.travel.domain.model.Trip;
 import com.solveria.backendservice.travel.infrastructure.mongo.ItineraryDocument;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,6 +34,32 @@ public class TripController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(
+            summary = "Create trip",
+            description = "Creates a trip for the authenticated tenant. Requires JWT Bearer token",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Create trip payload",
+            required = true,
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = CreateTripRequest.class),
+                    examples = @ExampleObject(
+                            name = "Request Example",
+                            value = """
+                                    {
+                                      "title": "Family trip",
+                                      "origin": "SCL",
+                                      "destination": "LIM",
+                                      "startDate": "2026-04-10",
+                                      "endDate": "2026-04-15",
+                                      "travelersCount": 3
+                                    }
+                                    """
+                    )
+            )
+    )
     public TripResponse create(@Valid @RequestBody CreateTripRequest request) {
         Trip trip = tripService.create(
                 request.title(),
@@ -42,11 +73,21 @@ public class TripController {
     }
 
     @GetMapping
+    @Operation(
+            summary = "List trips",
+            description = "Lists trips for the authenticated tenant. Requires JWT Bearer token",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
     public List<TripResponse> list() {
         return tripService.listForTenant().stream().map(this::toResponse).toList();
     }
 
     @GetMapping("/{tripId}")
+    @Operation(
+            summary = "Get trip",
+            description = "Gets a trip for the authenticated tenant. Requires JWT Bearer token",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
     public TripResponse get(@PathVariable Long tripId) {
         Trip trip = tripService.getForTenant(tripId);
         if (trip == null) {
@@ -56,6 +97,27 @@ public class TripController {
     }
 
     @PostMapping("/{tripId}/itinerary/generate")
+    @Operation(
+            summary = "Generate itinerary",
+            description = "Calls AI Service to generate itinerary. Requires JWT Bearer token",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Optional preferences for itinerary generation",
+            required = false,
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = GenerateItineraryRequest.class),
+                    examples = @ExampleObject(
+                            name = "Request Example",
+                            value = """
+                                    {
+                                      "preferences": "family-friendly activities"
+                                    }
+                                    """
+                    )
+            )
+    )
     public ItineraryResponse generateItinerary(@PathVariable Long tripId, @RequestBody GenerateItineraryRequest request) {
         ItineraryDocument doc = itineraryService.generate(tripId, request != null ? request.preferences() : null);
         if (doc == null) {
@@ -65,6 +127,11 @@ public class TripController {
     }
 
     @GetMapping("/{tripId}/itinerary")
+    @Operation(
+            summary = "Get latest itinerary",
+            description = "Returns the latest itinerary for a trip. Requires JWT Bearer token",
+            security = @SecurityRequirement(name = "bearerAuth")
+    )
     public ItineraryResponse getLatestItinerary(@PathVariable Long tripId) {
         ItineraryDocument doc = itineraryService.getLatest(tripId);
         if (doc == null) {

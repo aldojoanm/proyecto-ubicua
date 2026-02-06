@@ -2,6 +2,33 @@
 security:
   jwt:
     enabled: false
+    local:
+      enabled: true
+      issuer: ${IAM_LOCAL_JWT_ISSUER:http://localhost:8080}
+      key-id: ${IAM_LOCAL_JWT_KEY_ID:local-dev}
+      access-token-minutes: ${IAM_LOCAL_JWT_TTL_MINUTES:60}
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: ${IAM_DB_URL:jdbc:postgresql://localhost:5433/iam_service}
+    username: ${IAM_DB_USER:iam}
+    password: ${IAM_DB_PASSWORD:iam}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${IAM_JWT_ISSUER_URI:http://localhost:8080}
+          jwk-set-uri: ${IAM_JWT_JWK_SET_URI:http://localhost:8080/api/v1/auth/jwks}
+
+springdoc:
+  swagger-ui:
+    enabled: true
 
 # Actuator Configuration (DEV: expose more endpoints)
 management:

@@ -2,6 +2,8 @@
 security:
   jwt:
     enabled: true
+    local:
+      enabled: false
 
 # OAuth2 Resource Server JWT Configuration
 # Configure via environment variables (no hardcoded values):

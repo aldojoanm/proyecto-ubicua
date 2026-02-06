@@ -1,6 +1,7 @@
 package com.solveria.iamservice;
 
 import com.solveria.iamservice.config.security.JwtProperties;
+import com.solveria.iamservice.config.security.LocalJwtProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -10,7 +11,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EntityScan(basePackages = "com.solveria.core.iam.domain.model")
 @EnableJpaRepositories(basePackages = "com.solveria.core.iam.infrastructure.persistence.repository")
-@EnableConfigurationProperties(JwtProperties.class)
+@EnableConfigurationProperties({
+        JwtProperties.class,
+        LocalJwtProperties.class
+})
 public class IamServiceApplication {
 
     public static void main(String[] args) {
