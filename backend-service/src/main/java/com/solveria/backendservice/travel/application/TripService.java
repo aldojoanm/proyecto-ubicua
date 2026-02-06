@@ -23,9 +23,12 @@ public class TripService {
     }
 
     @Transactional
-    public Trip create(String title, String origin, String destination, LocalDate startDate, LocalDate endDate, int travelersCount) {
+    public Trip create(String title, String origin, String destination, LocalDate startDate, LocalDate endDate, int travelersCount, java.math.BigDecimal budget) {
         String ownerUserId = resolveUserId();
         Trip trip = new Trip(title, origin, destination, startDate, endDate, travelersCount, ownerUserId);
+        if (budget != null) {
+            trip.setBudget(budget);
+        }
         String tenantId = SecurityTenantContext.getTenantId();
         if (tenantId != null && !tenantId.isBlank()) {
             trip.setTenantId(tenantId);

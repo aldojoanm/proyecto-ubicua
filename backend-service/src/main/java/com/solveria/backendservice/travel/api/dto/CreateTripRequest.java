@@ -4,6 +4,7 @@ import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,8 @@ public record CreateTripRequest(
         @NotBlank String destination,
         @NotNull LocalDate startDate,
         @NotNull LocalDate endDate,
-        @Min(1) int travelersCount
+        @Min(1) int travelersCount,
+        @PositiveOrZero java.math.BigDecimal budget
 ) {
 
         @AssertTrue(message = "startDate must be on or before endDate")

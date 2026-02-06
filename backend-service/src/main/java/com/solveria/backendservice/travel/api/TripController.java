@@ -54,7 +54,8 @@ public class TripController {
                                       "destination": "LIM",
                                       "startDate": "2026-04-10",
                                       "endDate": "2026-04-15",
-                                      "travelersCount": 3
+                                      "travelersCount": 3,
+                                      "budget": 1200.00
                                     }
                                     """
                     )
@@ -67,7 +68,8 @@ public class TripController {
                 request.destination(),
                 request.startDate(),
                 request.endDate(),
-                request.travelersCount()
+                request.travelersCount(),
+                request.budget()
         );
         return toResponse(trip);
     }
@@ -149,7 +151,8 @@ public class TripController {
                 trip.getStartDate(),
                 trip.getEndDate(),
                 trip.getTravelersCount(),
-                trip.getStatus()
+                trip.getStatus(),
+                trip.getBudget()
         );
     }
 }

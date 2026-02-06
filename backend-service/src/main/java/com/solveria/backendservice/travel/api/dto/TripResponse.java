@@ -12,6 +12,7 @@ public record TripResponse(
         LocalDate startDate,
         LocalDate endDate,
         int travelersCount,
-        TripStatus status
+        TripStatus status,
+        java.math.BigDecimal budget
 ) {
 }

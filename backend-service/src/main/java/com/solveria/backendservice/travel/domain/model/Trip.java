@@ -38,6 +38,9 @@ public class Trip extends TenantAwareEntity {
     @Column(name = "owner_user_id", length = 120)
     private String ownerUserId;
 
+    @Column(name = "budget", precision = 12, scale = 2)
+    private java.math.BigDecimal budget;
+
     protected Trip() {
     }
 
@@ -82,6 +85,14 @@ public class Trip extends TenantAwareEntity {
 
     public String getOwnerUserId() {
         return ownerUserId;
+    }
+
+    public java.math.BigDecimal getBudget() {
+        return budget;
+    }
+
+    public void setBudget(java.math.BigDecimal budget) {
+        this.budget = budget;
     }
 
     public void markItineraryReady() {
